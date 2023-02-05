@@ -1,7 +1,7 @@
 
 
 ```bash
-yarn install
+yarn
 ```
 
 ```bash
