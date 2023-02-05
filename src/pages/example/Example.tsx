@@ -33,7 +33,7 @@ const Example = () => {
           <video
             className="card-img-top"
             data-dashjs-player
-            src="/video/dash.mpd"
+            src="https://exampledia.github.io/demo/dist/video/dash.mpd"
             controls
           ></video>
           <div className="card-body">
