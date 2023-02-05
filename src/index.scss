@@ -1,0 +1,98 @@
+$primary: #339AF0;
+$white: #ffffff;
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+a {
+  font-weight: 500;
+  color: $primary;
+  text-decoration: none;
+}
+a:hover {
+  color: #535bf2;
+  text-decoration: none;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+}
+
+h1 {
+  font-size: 3.2em !important;
+  line-height: 1.1 !important;
+  color: $primary !important;
+}
+
+h3 {
+  line-height: 1.1;
+  padding: 0;
+  margin: 0;
+}
+
+.border-none {
+  border: none !important;
+}
+
+.btn-primary-custom {
+  color: $white !important;
+}
+
+.color-primary {
+  color: $primary !important;
+}
+
+.no-margin {
+  margin: 0 !important;
+}
+
+.cursor-pointer {
+  cursor: pointer !important;
+}
+
+.height-70-vh {
+  min-height: 70vh;
+}
+
+/* do not group these rules */
+*::-webkit-input-placeholder {
+  color: $primary;
+}
+*:-moz-placeholder {
+  /* FF 4-18 */
+  color: $primary;
+  opacity: 1;
+}
+*::-moz-placeholder {
+  /* FF 19+ */
+  color: $primary;
+  opacity: 1;
+}
+*:-ms-input-placeholder {
+  /* IE 10+ */
+  color: $primary;
+}
+*::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: $primary;
+}
+*::placeholder {
+  /* modern browser */
+  color: $primary;
+}
+
+// Bootstrap initializaton
+@import "bootstrap/scss/bootstrap";

@@ -1,0 +1,156 @@
+openapi: 3.0.1
+
+info:
+  title: Exampledia Backend API
+  description: Api Documentation
+  version: 1.0.0
+
+servers:
+  - url: https://127.0.0.1:8001
+    description: Local
+
+tags:
+  - name: API
+  - name: Admin
+
+paths:
+  /v1/search:
+    post:
+      summary: Search fragments by a provided query
+      tags:
+        - API
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                query:
+                  type: string
+              example:
+                query: wand
+              required:
+                - query
+      responses:
+        "200":
+          description: Returns list of fragments
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    title:
+                      type: string
+                      description: A title of a source
+                      example: Harry Potter and the Philosopher's Stone
+                    text:
+                      type: string
+                      description: A caption from the fragment
+                      example: And who owned that wand?
+                    time:
+                      type: string
+                      description: Time period when the fragment happens in the source
+                      example: 00:27:55-00:28:10
+                    hash:
+                      type: string
+                      description: An identifier to get the fragment information in details
+                      example: 2cf24dba5fb0a30e26e83b2ac5b9e29e
+                  required:
+                    - title
+                    - text
+                    - time
+                    - hash
+        "400":
+          description: Validation failed
+
+  /v1/fragment/{hash}:
+    get:
+      summary: Get information about specific fragment by its hash
+      tags:
+        - API
+      parameters:
+        - in: path
+          name: hash
+          schema:
+            type: string
+          required: true
+          description: Fragment Hash
+          example: 2cf24dba5fb0a30e26e83b2ac5b9e29e
+      responses:
+        "200":
+          description: Returns common information and mpd url
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  title:
+                    type: string
+                    description: A title of a source
+                    example: Harry Potter and the Philosopher's Stone
+                  text:
+                    type: string
+                    description: A caption from the fragment
+                    example: And who owned that wand?
+                  time:
+                    type: string
+                    description: Time period when the fragment happens in the source
+                    example: 00:27:55-00:28:10
+                required:
+                  - title
+                  - text
+                  - time
+        "400":
+          description: Validation failed
+
+  /v1/mpd/{hash}:
+    get:
+      summary: Get MPD file
+      tags:
+        - API
+      parameters:
+        - in: path
+          name: hash
+          schema:
+            type: string
+          required: true
+          description: Fragment/MPD Hash
+          example: 2cf24dba5fb0a30e26e83b2ac5b9e29e
+      responses:
+        "200":
+          description: Returns MPD file
+          content:
+            application/dash+xml:
+              schema:
+                type: string
+                format: binary
+        "400":
+          description: Validation failed
+
+  /v1/admin/upload:
+    post:
+      summary: Upload new video
+      tags:
+        - Admin
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                tmdb-id:
+                  type: integer
+                  example: 671
+                video:
+                  type: string
+                  format: binary
+              required:
+                - tmdb-id
+                - video
+      responses:
+        "201":
+          description: Video uploaded
+        "400":
+          description: Validation failed
