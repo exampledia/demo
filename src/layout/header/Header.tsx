@@ -10,7 +10,7 @@ type Props = {
 const HeaderComponent = ({ isMainPage }: Props) => (
   <div className={clsx("header", { "conent-left": !isMainPage })}>
     <Link to="/" className="d-flex align-items-center justify-content-center text-decoration-none">
-      <img src="https://exampledia.github.io/demo/dist/logo.png" className="logo exampledia" alt="Exampledia logo" />
+      <img src="/logo.png" className="logo exampledia" alt="Exampledia logo" />
       <h1>xampledia</h1>
     </Link>
   </div>

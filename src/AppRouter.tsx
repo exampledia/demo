@@ -4,7 +4,7 @@ import { Example, MainSearch, Results } from "./pages";
 
 const AppRouter = () => {
   return (
-    <BrowserRouter basename="/demo/dist">
+    <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<MainSearch />} />
