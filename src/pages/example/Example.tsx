@@ -17,7 +17,7 @@ const Example = () => {
     let player: unknown | undefined = undefined;
     setTimeout(() => {
       player = createPlayer();
-      const url = "http://mavira.ddns.net:9200/dash-sandbox/dash.mpd";
+      const url = "https://minio-api.exampledia.space/dash-sandbox/dash.mpd";
       // @ts-ignore
       player.initialize(document.querySelector("#videoPlayer"), url, true);
     }, 1000);
