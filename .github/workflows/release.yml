@@ -1,0 +1,27 @@
+name: Release
+on:
+  push:
+    branches:
+      - main
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: executing remote ssh commands using password and login
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ secrets.DEMO_HOST }}
+          username: ${{ secrets.DEMO_USERNAME }}
+          password: ${{ secrets.DEMO_PASSWORD }}
+          port: ${{ secrets.DEMO_PORT }}
+          scripts:
+            echo "Go to the demo folder"
+            cd demo
+            echo "Get the last version"
+            git pull
+            echo "Install dependencies"
+            yarn
+            echo "Run build"
+            yarn build
+            echo "Build proccess has finished"
+            ls -al
