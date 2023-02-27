@@ -67,6 +67,9 @@ const Example = () => {
             <p className="card-text text-start">
               Hash: <small className="red">{hash}</small>
             </p>
+            <p className="card-text text-start">
+              Test CI
+            </p>
           </div>
         </div>
       </div>
