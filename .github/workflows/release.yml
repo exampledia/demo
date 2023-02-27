@@ -10,7 +10,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [14.x]
+        node-version: [18.x]
 
     steps:
     - uses: actions/checkout@v2
@@ -24,7 +24,6 @@ jobs:
         yarn install
         yarn build
         ls
-      working-directory: demo
 
   release:
     runs-on: ubuntu-latest
