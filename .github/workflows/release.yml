@@ -1,9 +1,31 @@
-name: Release
+name: RELEASE DEPLOY
+
 on:
   push:
     branches:
       - main
 jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: 1. Install Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: 2. Build demo
+      run: |
+        yarn install
+        yarn build
+        ls
+      working-directory: demo
+
   release:
     runs-on: ubuntu-latest
     steps:
@@ -14,14 +36,5 @@ jobs:
           username: ${{ secrets.DEMO_USERNAME }}
           password: ${{ secrets.DEMO_PASSWORD }}
           port: ${{ secrets.DEMO_PORT }}
-          scripts:
-            echo "Go to the demo folder"
-            cd demo
-            echo "Get the last version"
-            git pull
-            echo "Install dependencies"
-            yarn
-            echo "Run build"
-            yarn build
-            echo "Build proccess has finished"
-            ls -al
+          target: demo/dist
+          rm: true
